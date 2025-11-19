@@ -32,6 +32,10 @@
   - Hugging Face dataset downloads taking ~1h on first run; subsequent runs hit the on-disk cache.
   - Transformers warning about missing PyTorch—installing `torch==2.4.1` resolves it when local inference/fine-tuning is required.
 
-- **Next Steps**:
-  - Continue into Day 4 (frontier model benchmarks) and Day 5 (fine-tuning).
-  - Begin modularizing notebooks into scripts/CLI for the production pipeline plan (Phase 1 onward).
+
+ - **Frontier Model Results (Day 4)**:
+  - `human_pricer` – manual predictions from CSV; provides human baseline for comparison (often higher error than trained models due to lack of training data exposure).
+  - `gpt_4o_mini` – zero-shot GPT-4o-mini via OpenAI API; strong performance without fine-tuning, typically outperforms traditional ML baselines with lower RMSLE and higher green hit rates.
+  - `gpt_4o` – flagship GPT-4o model (August 2024); best zero-shot performance among OpenAI models, though costs ~1-2 cents per 250-item evaluation run.
+  - `claude_3_point_5_sonnet` – Claude 3.5 Sonnet (Anthropic) via API; competitive zero-shot performance, also costs ~1-2 cents per evaluation run.
+  - Note: Frontier models may have seen test items in their pretraining data (test contamination), giving them an unfair advantage over traditional ML models that only saw the training set.
